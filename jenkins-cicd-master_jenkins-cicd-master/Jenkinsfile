@@ -9,22 +9,22 @@ pipeline{
     stages{
         stage('Build Maven'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/HaitharAli/jenkins-cicd']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Abdulpersonal/Devops-autoamtion-work.git']]])
                 bat 'mvn clean install'
             }
         }
         stage('Build Docker image'){
             steps{
                 script{
-                    bat 'docker build -t haitharali/jenkins-cicd .'
+                    bat 'docker build -t abduli2i/jenkins-cicd .'
                 }
             }
         }
         stage('Push Image to Hub'){
             steps{
                 script{
-                        bat 'docker login -u haitharali -p %PASSWORD%'
-                        bat 'docker push haitharali/jenkins-cicd'
+                        bat 'docker login -u abduli2i -p %PASSWORD%'
+                        bat 'docker push abduli2i/jenkins-cicd'
                 }
             }
         }
